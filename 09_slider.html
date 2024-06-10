@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Slider</title>
+<style>
+  .slider {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #ccc;
+  }
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .slide {
+    min-width: 100%;
+  }
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+  }
+  .prev {
+    left: 0;
+  }
+  .next {
+    right: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="slides">
+    <div class="slide"><img src="background.jpg" alt="Image 1"></div>
+    <div class="slide"><img src="background.jpg" alt="Image 2"></div>
+    <div class="slide"><img src="background.jpg" alt="Image 3"></div>
+  </div>
+  <div class="prev">&#10094;</div>
+  <div class="next">&#10095;</div>
+</div>
+
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    if (index >= totalSlides) {
+      slideIndex = 0;
+    } else if (index < 0) {
+      slideIndex = totalSlides - 1;
+    }
+    const offset = -slideIndex * 100 + '%';
+    document.querySelector('.slides').style.transform = `translateX(${offset})`;
+  }
+
+  document.querySelector('.prev').addEventListener('click', () => {
+    slideIndex--;
+    showSlide(slideIndex);
+  });
+
+  document.querySelector('.next').addEventListener('click', () => {
+    slideIndex++;
+    showSlide(slideIndex);
+  });
+
+  // Auto slide
+  setInterval(() => {
+    slideIndex++;
+    showSlide(slideIndex);
+  }, 3000);
+</script>
+
+</body>
+</html>
