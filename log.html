@@ -11,16 +11,22 @@
         padding: 0;
         background-color: #f1f1f1;
       }
+      .loginMain {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
       .container {
         width: 100%;
         max-width: 400px;
-        margin: 100px auto;
+        /* margin: 100px auto; */
         padding: 20px;
         background-color: #1aa8ef;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         position: relative;
-        
       }
       .logo {
         text-align: center;
@@ -59,81 +65,117 @@
       }
       .icon {
         position: absolute;
-        top: 56%;
-        right: 6%;
-        width: 20px;
+        top: 44%;
+        right: 2%;
+        width: 19px;
         cursor: pointer;
       }
+
+      .form {
+        position: relative;
+      }
+      .password-input-group {
+        position: relative;
+      }
+      .forgotpass {
+        text-align: end;
+        margin-top: -20px;
+        /* margin: auto; */
+        margin-bottom: -20px;
+      }
+
+      .footer-main {
+        position: fixed;
+        bottom: 0;
+        background: #000;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer-main  p{
+        margin: 10px 0;
+        color: #fff;
+        font-size: 14px;
+      }
+
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="logo">
-        <img src="logo.png" alt="Logo" />
+    <section class="loginMain">
+      <div class="container">
+        <div class="logo">
+          <img src="logo.png" alt="Logo" />
+        </div>
+        <form action="#" onsubmit="return valid()" method="post" class="form">
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            id="username"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            id="password"
+          />
+          <div class="forgotpass">
+            <p><a href="createaccount.html">forgot Password?</a></p>
+          </div>
+
+          <img class="icon" src="eye-close.png" alt="" id="eyeicon" />
+
+          <input type="submit" value="Login" />
+          <div class="register-link">
+            <p>
+              Don't have an Account <a href="createaccount.html">Register</a>
+            </p>
+          </div>
+
+          <div class="error-message" id="errorMessage"></div>
+        </form>
       </div>
-      <form  action="#"  onsubmit="return valid()" method="post" >
-        <input type="text" name="username" placeholder="Username"  id="username" />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-           id="password"
-        />
-        
-        <img class="icon" src="eye-close.png" alt=""  id="eyeicon"/>
+      <footer class="footer-main">
+        <p>copyright @harshad mane</p>
+      </footer>
+    </section>
 
-        <input type="submit" value="Login"   />
-
-        <div class="error-message" id="errorMessage"></div>
-      </form>
-    </div>
-    
     <script>
       function valid() {
         var username = document.getElementById("username");
         var password = document.getElementById("password");
-        
 
-        if(username.value.trim()==""){
+        if (username.value.trim() == "") {
           alert(" Please enter the username");
           return false;
-        }
-        else if(password.value.trim()=="")
-        {
+        } else if (password.value.trim() == "") {
           alert("Please enter the password");
           return false;
-        }
-        else if(password.value.trim().length<6){
-         alert("Password length too short!!")
-         password.style.border="2px solid red";
-          return false
-
-
-        }
-        else{
+        } else if (password.value.trim().length < 6) {
+          alert("Password length too short!!");
+          password.style.border = "2px solid red";
+          return false;
+        } else {
           return true;
         }
       }
 
-
       // Hide show Password
 
-      let eyeicon=document.getElementById("eyeicon");
-      let password=document.getElementById("password");
+      let eyeicon = document.getElementById("eyeicon");
+      let password = document.getElementById("password");
 
-      eyeicon.onclick=function(){
-        if(password.type=="password"){
-            password.type="text"
-            eyeicon.src="eye-open.png";
-
-        }else{
-            password.type="password";
-            eyeicon.src="eye-close.png";
-
+      eyeicon.onclick = function () {
+        if (password.type == "password") {
+          password.type = "text";
+          eyeicon.src = "eye-open.png";
+        } else {
+          password.type = "password";
+          eyeicon.src = "eye-close.png";
         }
-      }
-
-
+      };
     </script>
   </body>
 </html>
